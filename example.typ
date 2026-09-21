@@ -58,13 +58,17 @@
     + Ut enim ad minim veniam, quis nostrud exercitation ullamco.
   ]
 
+\
+
   Use #hl[`#hl[...]`] to emphasise a phrase in the university blue.
 ]
 
 // ------------------------------------------------------------------ two columns
 #slide(title: "Two-column layout")[
   #grid(
-    columns: (48%, 52%),
+    // fr shares out what is left after the gutter; percentages would add up
+    // to 100% *plus* the gutter and push the right column past the margin.
+    columns: (48fr, 52fr),
     gutter: 8mm,
     align: (horizon, horizon),
     [

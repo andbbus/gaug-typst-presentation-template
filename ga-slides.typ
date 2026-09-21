@@ -160,29 +160,32 @@
   // inner pad bleeds the coloured box 4 bp (1.41 mm) past the text width on
   // each side, exactly as beamerboxesrounded does, while the body text keeps
   // the full text width so line breaks match the LaTeX template.
+  // The parts are stacked (not laid out as markup) so no paragraph leading
+  // creeps in between the title bar, the transition line and the body.
+  let parts = ()
+  if title != none {
+    parts.push(box(
+      width: 100%,
+      fill: fill,
+      inset: (x: 1.41mm, top: 0.5mm, bottom: 0.5mm),
+    )[#text(fill: textcolor, size: title-size, title)])
+    // soft title -> body transition (bmb@transition)
+    parts.push(box(width: 100%, height: 0.2mm,
+      fill: gradient.linear(fill, tint, angle: 90deg)))
+  }
+  parts.push(box(
+    width: 100%,
+    fill: tint,
+    inset: (x: 1.41mm, top: 1.2mm, bottom: 1.2mm),
+  )[#text(size: body-size)[#body]])
   block(above: 3.3mm, below: 0mm, breakable: false, width: 100%,
     pad(x: -1.41mm, block(
       width: 100%,
       radius: 1.4mm,
       clip: true,
       stroke: none,
-    )[
-      #if title != none [
-        #box(
-          width: 100%,
-          fill: fill,
-          inset: (x: 1.41mm, top: 0.35mm, bottom: 0.35mm),
-        )[#text(fill: textcolor, size: title-size, title)]
-        // soft title -> body transition (bmb@transition)
-        #box(width: 100%, height: 0.5mm,
-          fill: gradient.linear(fill, tint, angle: 90deg))
-      ]
-      #box(
-        width: 100%,
-        fill: tint,
-        inset: (x: 1.41mm, top: 0.35mm, bottom: 0.6mm),
-      )[#text(size: body-size)[#body]]
-    ]))
+      stack(dir: ttb, spacing: 0mm, ..parts),
+    )))
 }
 
 #let uniblau-block(title: none, title-size: 11pt, body-size: 11pt, body) = ga-block(fill: colors.uniblau, title-size: title-size, body-size: body-size, title: title, body)
