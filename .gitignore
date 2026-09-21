@@ -1,0 +1,6 @@
+.DS_Store
+Icon?
+
+# Build artefacts from your own decks (the committed example.pdf is kept).
+/*.pdf
+!example.pdf
