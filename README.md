@@ -36,10 +36,34 @@ typst compile example.typ        # -> example.pdf
 typst watch   example.typ        # live preview while editing
 ```
 
+## Install as a local Typst package
+
+Link (or copy) this repository into Typst's local package directory once, and
+every deck on the machine can import it — no copying files per project:
+
+```sh
+# macOS
+DEST="$HOME/Library/Application Support/typst/packages/local/gaug-slides"
+# Linux:  DEST="$HOME/.local/share/typst/packages/local/gaug-slides"
+mkdir -p "$DEST" && ln -s "$PWD" "$DEST/0.1.0"
+# Windows (PowerShell)
+New-Item -ItemType SymbolicLink -Path "$env:APPDATA\typst\packages\local\gaug-slides\0.1.0" -Target $PWD
+```
+
+Then, from any folder:
+
+```typst
+#import "@local/gaug-slides:0.1.0": *
+```
+
+A symlink keeps the package in sync with the repository; bump `version` in
+`typst.toml` and add a matching directory when you want to keep old decks
+pinned to an older look.
+
 ## Usage
 
-Copy `ga-slides.typ` and `assets/` next to your own `.typ` file and start from
-`example.typ`:
+Either import the package as above, or copy `ga-slides.typ` and `assets/` next
+to your own `.typ` file and start from `example.typ`:
 
 ```typst
 #import "ga-slides.typ": *
