@@ -1,8 +1,8 @@
 // ga-slides.typ — a high-fidelity Typst port of the Georg-August-Universität
 // Göttingen "GAslides" beamer theme (beamerthemeGA.sty, v1.0, 2022).
 //
-// Geometry, colours, fonts and box metrics are taken 1:1 from the original
-// .sty and verified against a pdflatex render of the template (page 160x90 mm,
+// Geometry, colours and box metrics are taken 1:1 from the original .sty and
+// verified against a pdflatex render of the template (page 160x90 mm,
 // true "big point" sizes; 1 bp = 1 pt). Key measured anchors (mm from the top
 // of the 160x90 mm page):
 //   header gradient rule   y 12.45   (uniblau -> mittelblau, full bleed)
@@ -10,9 +10,14 @@
 //   frametitle cap-top     y 17.7    (LARGE 17 pt bold, uniblau)
 //   first block bar-top    y 25.99
 //   footer bar             y 83.82   (grau10, 6.1 mm tall)
+//
+// Deviations from the LaTeX original, at the university's request for the
+// public release (Sep 2026): font ("Calibri", "Carlito") instead of Latin
+// Modern Sans; uniblau refreshed to the current house blue RGB 000/095/155;
+// the headline logo includes the motto "in publica commoda".
 
 #let colors = (
-  uniblau:       rgb(21, 50, 104),
+  uniblau:       rgb(0, 95, 155),  // house blue RGB 000/095/155
   hellblau:      rgb(188, 206, 226),
   weiss:         rgb(255, 255, 255),
   schwarz:       rgb(0, 0, 0),
@@ -31,8 +36,9 @@
 )
 
 #let uni-name = "Georg-August-Universität Göttingen"
-// GA wordmark, rendered at width 35 mm in the beamer headline.
-#let logo = image("assets/logo-2.pdf", width: 35mm)
+// GA logo with the motto ("in publica commoda"), rendered at width 35 mm in
+// the beamer headline.
+#let logo = image("assets/logo.svg", width: 35mm)
 
 // Page furniture (headline rules + logo + short institute, footline bar +
 // texts). Absolutely placed in mm from the page origin so it matches the
@@ -53,14 +59,14 @@
     // short institute (institute in head/foot = grau60)
     #if short-institute != none {
       place(top + right, dx: -8mm, dy: 5.0mm,
-        text(font: ("Latin Modern Sans", "Arial"), size: 9pt,
+        text(font: ("Calibri", "Carlito"), size: 9pt,
              fill: colors.grau60, short-institute))
     }
     // --- footline ---
     #place(top + left, dx: 0mm, dy: 83.82mm,
       rect(width: pw, height: 6.18mm, fill: colors.grau10))
     #place(top + left, dx: 0mm, dy: 85.9mm, box(width: pw, {
-      set text(font: ("Latin Modern Sans", "Arial"), size: 6pt)
+      set text(font: ("Calibri", "Carlito"), size: 6pt)
       grid(
         columns: (1fr, auto, 1fr),
         align: (left + horizon, center + horizon, right + horizon),
@@ -91,7 +97,7 @@
   )
 
   // Beamer bp sizes: normalsize 11 bp / 13.6 bp lead.
-  set text(font: ("Latin Modern Sans", "Arial"), size: 11pt, fill: colors.grau80, lang: "en")
+  set text(font: ("Calibri", "Carlito"), size: 11pt, fill: colors.grau80, lang: "en")
   set par(justify: false, leading: 0.5em, spacing: 0.6em)
   // itemize item: round $\bullet$ (drawn; LM Sans U+2022 is squarish) in the
   // structure colour (grau80).

@@ -1,39 +1,42 @@
 # GAUG Typst Presentation Template
 
 A [Typst](https://typst.app) port of the **Georg-August-Universität Göttingen**
-"GAslides" beamer theme (`beamerthemeGA.sty`, v1.0, 2022). Geometry, colours,
-fonts and box metrics were matched 1:1 against a `pdflatex` render of the
-original template, so a deck built here looks like the LaTeX one — but compiles
-in a fraction of the time and with far less markup.
+"GAslides" beamer theme (`beamerthemeGA.sty`, v1.0, 2022). Geometry and box
+metrics were matched 1:1 against a `pdflatex` render of the original template,
+so a deck built here looks like the LaTeX one — but compiles in a fraction of
+the time and with far less markup. Typography, the accent blue and the logo
+follow the university's current house standards (as agreed with the Göttingen
+PR office for this public release).
+
+> **Unofficial port.** This is an independent community port, not an official
+> template of the Georg-August-Universität Göttingen, and it is not maintained
+> by the university or by le-tex. For the official templates, see the
+> university's website.
 
 ![Preview](docs/preview.png)
 
 ## Requirements
 
 - **Typst** ≥ 0.12 (developed on 0.15) — <https://github.com/typst/typst>
-- The **Latin Modern Sans** font (the theme's typeface, `lmss`). Without it the
-  template falls back to Arial and stops looking like the original.
+- **Carlito** — the open, Calibri-metric-compatible clone of the university's
+  house font — **bundled in `fonts/`**; nothing to install (see *Fonts*).
+  If you have real **Calibri** (Windows/Office), the theme picks it up first.
 
-### Installing Latin Modern Sans
+### Fonts
 
-Any of these works; Typst picks up fonts from the OS or from `--font-path`.
-
-- **Have a TeX distribution?** The OTFs already ship with it, e.g.
-  `…/texmf-dist/fonts/opentype/public/lm/lmsans10-*.otf`. Copy the four
-  `lmsans10-{regular,bold,oblique,boldoblique}.otf` faces into your user font
-  folder (`~/Library/Fonts` on macOS, `~/.local/share/fonts` on Linux, the
-  Fonts control panel on Windows).
-- **No TeX?** Download *Latin Modern Sans* from the
-  [GUST font page](https://www.gust.org.pl/projects/e-foundry/latin-modern) and
-  install the same faces.
-- **Prefer not to install?** Point Typst at a folder of the OTFs at build time:
-  `typst compile --font-path ./fonts example.typ`.
+The theme requests `("Calibri", "Carlito")`: real Calibri wherever it exists,
+Carlito everywhere else — same metrics, near-identical look. The four Carlito
+faces (`fonts/Carlito-*.ttf`, SIL OFL — see `fonts/Carlito-LICENSE.txt`) ship
+with this repository, so building with `--font-path fonts` (see *Build*) needs
+no system install. If you prefer it system-wide: Carlito is on Google Fonts,
+ships with LibreOffice, and is `fonts-crosextra-carlito` on Debian/Ubuntu —
+then you can drop the flag.
 
 ## Build
 
 ```sh
-typst compile example.typ        # -> example.pdf
-typst watch   example.typ        # live preview while editing
+typst compile --font-path fonts example.typ   # -> example.pdf
+typst watch   --font-path fonts example.typ   # live preview while editing
 ```
 
 ## Install as a local Typst package
@@ -122,16 +125,22 @@ to your own `.typ` file and start from `example.typ`:
 - The beamer footer **navigation-symbol cluster** is intentionally omitted (it
   is a navigation widget most decks suppress anyway).
 - Line breaking is Typst's, not TeX's, so long lines may wrap a word earlier or
-  later than the LaTeX original. Sizes, colours and layout are matched.
+  later than the LaTeX original.
+- Typography, the accent blue and the headline logo follow the university's
+  current house standards (`#005F9B`; Calibri-style Carlito; logo with the
+  motto) — updated with the PR office ahead of the public release. The 2022
+  LaTeX pack used a darker navy (`#153268`) for its accent.
 
 ## Credits & licensing
 
 - Original design: **GAslides** beamer theme, © 2022 Georg-August-Universität
   Göttingen, authored/maintained by le-tex publishing services.
-- The GA wordmark in `assets/logo-2.pdf` is the property of the
-  Georg-August-Universität Göttingen and is included for use by members of the
-  university. If you redistribute or use this template outside that context,
-  check the university's brand-usage rules and replace the logo as needed.
+- The GA logo in `assets/logo.svg` (with the motto *in publica commoda*) is the
+  property of the Georg-August-Universität Göttingen and is included here with
+  the university's permission for this template; its use is restricted to
+  members of the university for university purposes. If you use this template
+  outside that context, check the university's brand-usage rules and replace
+  the logo as needed.
 - The Typst port code (`ga-slides.typ`) is released under the MIT License
   (`LICENSE`). This applies to the port only, not to the university's visual
   identity or the original beamer theme.

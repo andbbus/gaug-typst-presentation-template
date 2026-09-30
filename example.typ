@@ -1,6 +1,6 @@
 // Example deck for the GAUG Typst presentation template.
 // Build:  typst compile example.typ
-// (Requires the "Latin Modern Sans" font — see README.)
+// (Bundles Carlito, the open Calibri-metric font — see README.)
 
 #import "ga-slides.typ": *
 

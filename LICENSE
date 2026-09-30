@@ -4,8 +4,8 @@ Copyright (c) 2026 Andrea Busolo
 
 This license covers the Typst port code in this repository (notably
 `ga-slides.typ` and `example.typ`). It does NOT cover the visual identity of
-the Georg-August-Universität Göttingen — including the wordmark in
-`assets/logo-2.pdf` — nor the original "GAslides" beamer theme
+the Georg-August-Universität Göttingen — including the logo in
+`assets/logo.svg` — nor the original "GAslides" beamer theme
 (© 2022 Georg-August-Universität Göttingen), on whose design this port is based.
 Those remain the property of their respective owners.
 
