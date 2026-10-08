@@ -1,9 +1,17 @@
 [package]
 name = "gaug-slides"
-version = "0.1.0"
+version = "1.0.0"
 entrypoint = "ga-slides.typ"
 authors = ["Andrea Busolo <andrea.busolo@edu.unifi.it>"]
-license = "MIT"
-description = "Beamer-style presentation theme for the Georg-August-Universität Göttingen."
+license = "MIT AND MIT-0"
+description = "Unofficial presentation slides in the Göttingen GAslides style."
 repository = "https://github.com/andbbus/gaug-typst-presentation-template"
-exclude = ["example.typ", "example.pdf", "docs"]
+keywords = ["Georg-August-Universität Göttingen", "University of Göttingen", "GAslides", "slides", "beamer"]
+categories = ["presentation"]
+compiler = "0.12.0"
+exclude = ["example.typ", "example.pdf", "docs", "fonts"]
+
+[template]
+path = "template"
+entrypoint = "main.typ"
+thumbnail = "thumbnail.png"

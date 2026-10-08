@@ -15,22 +15,38 @@ PR office for this public release).
 
 ![Preview](docs/preview.png)
 
+## Getting started
+
+Create a new presentation with `typst init`:
+
+```sh
+typst init @preview/gaug-slides:1.0.0
+```
+
+or import the package into an existing document:
+
+```typst
+#import "@preview/gaug-slides:1.0.0": *
+```
+
 ## Requirements
 
 - **Typst** ≥ 0.12 (developed on 0.15) — <https://github.com/typst/typst>
 - **Carlito** — the open, Calibri-metric-compatible clone of the university's
-  house font — **bundled in `fonts/`**; nothing to install (see *Fonts*).
-  If you have real **Calibri** (Windows/Office), the theme picks it up first.
+  house font. If you have real **Calibri** (Windows/Office), the theme picks it
+  up first; otherwise install or add Carlito (see *Fonts*).
 
 ### Fonts
 
 The theme requests `("Calibri", "Carlito")`: real Calibri wherever it exists,
-Carlito everywhere else — same metrics, near-identical look. The four Carlito
-faces (`fonts/Carlito-*.ttf`, SIL OFL — see `fonts/Carlito-LICENSE.txt`) ship
-with this repository, so building with `--font-path fonts` (see *Build*) needs
-no system install. If you prefer it system-wide: Carlito is on Google Fonts,
-ships with LibreOffice, and is `fonts-crosextra-carlito` on Debian/Ubuntu —
-then you can drop the flag.
+Carlito everywhere else — same metrics, near-identical look. Typst Universe
+packages cannot bundle fonts, so add or install Carlito yourself: it is on
+Google Fonts, ships with LibreOffice, and is `fonts-crosextra-carlito` on
+Debian/Ubuntu. In the Typst web app, add it to your font set.
+
+Building from a clone of this repository needs no system install: the four
+Carlito faces ship in `fonts/` (SIL OFL — see `fonts/Carlito-LICENSE.txt`) —
+just pass `--font-path fonts` (see *Build*).
 
 ## Build
 
@@ -48,15 +64,15 @@ every deck on the machine can import it — no copying files per project:
 # macOS
 DEST="$HOME/Library/Application Support/typst/packages/local/gaug-slides"
 # Linux:  DEST="$HOME/.local/share/typst/packages/local/gaug-slides"
-mkdir -p "$DEST" && ln -s "$PWD" "$DEST/0.1.0"
+mkdir -p "$DEST" && ln -s "$PWD" "$DEST/1.0.0"
 # Windows (PowerShell)
-New-Item -ItemType SymbolicLink -Path "$env:APPDATA\typst\packages\local\gaug-slides\0.1.0" -Target $PWD
+New-Item -ItemType SymbolicLink -Path "$env:APPDATA\typst\packages\local\gaug-slides\1.0.0" -Target $PWD
 ```
 
 Then, from any folder:
 
 ```typst
-#import "@local/gaug-slides:0.1.0": *
+#import "@local/gaug-slides:1.0.0": *
 ```
 
 A symlink keeps the package in sync with the repository; bump `version` in
@@ -65,8 +81,8 @@ pinned to an older look.
 
 ## Usage
 
-Either import the package as above, or copy `ga-slides.typ` and `assets/` next
-to your own `.typ` file and start from `example.typ`:
+Import the package as above, or copy `ga-slides.typ` and `assets/` next to your
+own `.typ` file and start from `example.typ`:
 
 ```typst
 #import "ga-slides.typ": *
@@ -144,3 +160,7 @@ to your own `.typ` file and start from `example.typ`:
 - The Typst port code (`ga-slides.typ`) is released under the MIT License
   (`LICENSE`). This applies to the port only, not to the university's visual
   identity or the original beamer theme.
+- The starter files in `template/` (what `typst init` scaffolds into your
+  project) are released under the **MIT-0** license
+  (<https://opensource.org/license/mit-0>) — no attribution required, adapt
+  them freely.

@@ -4,3 +4,7 @@ Icon?
 # Build artefacts from your own decks (the committed example.pdf is kept).
 /*.pdf
 !example.pdf
+
+# Editor/tooling junk (local only)
+.kilo/
+.statamcp/
